@@ -67,12 +67,14 @@ window.onload=function(){
 		$('prg').style.display = 'none';
 		$('prd').style.display = 'block';
 		this.className = "clk";
+		a_prd_jax();
 	}
 	$('bcyy').onclick = function(){
 		$('cpsj').className = '';
 		$('prg').style.display = 'block';
 		$('prd').style.display = 'none';
 		this.className = "clk";
+		a_prg_jax();
 	}
 
 
@@ -167,35 +169,38 @@ window.onload=function(){
 		url : 'http://study.163.com/webDev/couresByCategory.htm',
 		data : {
 			'pageNo':'1',
-			'psize':'20',
+			'psize':'180',//一次性请求全部的课程（点击翻页再请求会更好？）
 			'type':'10'
 		},
 		success : function(data) {
 			var _data= JSON.parse(data);
-			var oDiv = document.getElementById("prd");
-
+			var qDiv = document.getElementById("prd");
+			qDiv.innerHTML = "";
 			for(i=0;i<20;i++){
-				var ooDiv = document.createElement("div");
-				oDiv.appendChild(ooDiv);
-				ooDiv.innerHTML = "<span class='bigPhotoUrl' style='background:url("+_data.list[i].bigPhotoUrl+")center/100% 100%'></span><p class='name'>"+_data.list[i].name+"</p><p class='categoryName'>"+_data.list[i].categoryName+"</p><p class='learnerCount'><span></span>"+_data.list[i].learnerCount+"</p><p class='price'>￥"+_data.list[i].price+"</p>";
-				}
-				// alert(_data.pagination.pageIndex);
-				
-
-				$('pages').onclick = function(event){
-					event = event || window.event;
-					var target = event.target || event.srcElement;
-					if(target.className == 'page'){
-						var a = document.getElementsByClassName('page');
-						for(var i=0;i<a.length;i++){
-							a[i].className = 'page';
-						}
-						target.className = 'page select';
-						_data.pagination.pageIndex = target.innerHTML;					
+				var qqDiv = document.createElement("div");
+				qDiv.appendChild(qqDiv);
+				qqDiv.innerHTML = "<span class='bigPhotoUrl' style='background:url("+_data.list[i].bigPhotoUrl+")center/100% 100%'></span><p class='name'>"+_data.list[i].name+"</p><p class='categoryName'>"+_data.list[i].categoryName+"</p><p class='learnerCount'><span></span>"+_data.list[i].learnerCount+"</p><p class='price'>￥"+_data.list[i].price+"</p>";
+			}
+			$('pages').onclick = function(event){
+				event = event || window.event;
+				var target = event.target || event.srcElement;
+				if(target.className == 'page'){
+					var a = document.getElementsByClassName('page');
+					for(var i=0;i<a.length;i++){
+						a[i].className = 'page';
 					}
+					target.className = 'page select';
+					_data.pagination.pageIndex = target.innerHTML;
+					qDiv.innerHTML = "";
+					for(i=_data.pagination.pageIndex*20;i<_data.pagination.pageIndex*20+20;i++){
+						var qqDiv = document.createElement("div");
+						qDiv.appendChild(qqDiv);
+						qqDiv.innerHTML = "<span class='bigPhotoUrl' style='background:url("+_data.list[i].bigPhotoUrl+")center/100% 100%'></span><p class='name'>"+_data.list[i].name+"</p><p class='categoryName'>"+_data.list[i].categoryName+"</p><p class='learnerCount'><span></span>"+_data.list[i].learnerCount+"</p><p class='price'>￥"+_data.list[i].price+"</p>";
+					}					
 				}
-			},
-			async : true
+			}
+		},
+		async: true
 		});
 	}
 
@@ -205,21 +210,38 @@ window.onload=function(){
 		url : 'http://study.163.com/webDev/couresByCategory.htm',
 		data : {
 			'pageNo':'1',
-			'psize':'20',
+			'psize':'180',
 			'type':'20'
 		},
 		success : function(data) {
 			var _data= JSON.parse(data);
-
 			var oDiv = document.getElementById("prg");
-
+			oDiv.innerHTML = "";
 			for(i=0;i<20;i++){
 				var ooDiv = document.createElement("div");
 				oDiv.appendChild(ooDiv);
 				ooDiv.innerHTML = "<div><span class='bigPhotoUrl' style='background:url("+_data.list[i].bigPhotoUrl+")center/100% 100%'></span><p class='name'>"+_data.list[i].name+"</p><p class='categoryName'>"+_data.list[i].categoryName+"</p><p class='learnerCount'><span></span>"+_data.list[i].learnerCount+"</p><p class='price'>￥"+_data.list[i].price+"</p></div>";
-				}
-			},
-			async : true
+			}
+			$('pages').onclick = function(event){
+					event = event || window.event;
+					var target = event.target || event.srcElement;
+					if(target.className == 'page'){
+						var a = document.getElementsByClassName('page');
+						for(var i=0;i<a.length;i++){
+							a[i].className = 'page';
+						}
+						target.className = 'page select';
+						_data.pagination.pageIndex = target.innerHTML;
+						oDiv.innerHTML = "";
+						for(i=_data.pagination.pageIndex*20;i<_data.pagination.pageIndex*20+20;i++){
+							var ooDiv = document.createElement("div");
+							oDiv.appendChild(ooDiv);
+							ooDiv.innerHTML = "<span class='bigPhotoUrl' style='background:url("+_data.list[i].bigPhotoUrl+")center/100% 100%'></span><p class='name'>"+_data.list[i].name+"</p><p class='categoryName'>"+_data.list[i].categoryName+"</p><p class='learnerCount'><span></span>"+_data.list[i].learnerCount+"</p><p class='price'>￥"+_data.list[i].price+"</p>";
+						}					
+					}
+			}
+		},
+		async: true
 		});
 	}
 
@@ -238,32 +260,39 @@ window.onload=function(){
 				oDiv.appendChild(ooDiv);
 				
 				ooDiv.innerHTML = "<sanp class='smallPhotoUrl' style='background: url("+_data[i].smallPhotoUrl+")center/100% 100% no-repeat; width: 50px; height: 50px; display: inline-block;'></span><p class='name'>"+_data[i].name+"</p><p class='learnerCount'><span></span>"+_data[i].learnerCount+"</p>";
-				// var _img = document.createElement("span");
-				// var _name = document.createElement("p");
-				// var _learnerCount = document.createElement("p");
-				// var _people = document.createElement("span");
-				// _img.setAttribute("class", "smallPhotoUrl");
-				// _img.style.background ="url("+_data[i].smallPhotoUrl+")center/100% 100%";
-				// _name.setAttribute("class", "name");
-				// _learnerCount.setAttribute("class", "learnerCount");
-				// _name.innerHTML = _data[i].name;
-				// _learnerCount.innerHTML = _data[i].learnerCount;
-				// ooDiv.appendChild(_img);
-				// ooDiv.appendChild(_name);
-				// ooDiv.appendChild(_learnerCount);
-				// _learnerCount.appendChild(_people);
 				}
 			},
 			async : true
 		});
 	}
 
+	// function aaa(){
+	// 	ajax({
+	// 	method : 'get',
+	// 	url : 'http://study.163.com /webDev/login.htm',
+	// 	data : {
+	// 		'userName': 'studyOnline',
+	// 		'password': 'study.163.com'
+	// 	},
+	// 	success : function(data) {
+	// 		if(data==1){
+	// 			$('watch').innerHTML = "已关注";
+	// 			$('watch').style.background = "gray";
+	// 			$('cover').style.display = 'none';
+	// 			$('login').style.display = 'none';
+	// 			console.log(11);
+	// 			}
+	// 		}},
+	// 	async : true
+	// 	});
+	// }
 
 
 
 a_prd_jax();
 a_prg_jax();
 a_hot_jax();
+// aaa();
 
 
 
