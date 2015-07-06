@@ -254,14 +254,17 @@ window.onload=function(){
 			var _data= JSON.parse(data);
 
 			var oDiv = document.getElementById("hot-classes");
-
-			for(i=0;i<10;i++){
+			oDiv.innerHTML = "";
+			var r = Math.round(Math.random()*10);
+			for(i=r;i<r+10;i++){
 				var ooDiv = document.createElement("div");
 				oDiv.appendChild(ooDiv);
-				
+				ooDiv.innerHTML = "";
 				ooDiv.innerHTML = "<sanp class='smallPhotoUrl' style='background: url("+_data[i].smallPhotoUrl+")center/100% 100% no-repeat; width: 50px; height: 50px; display: inline-block;'></span><p class='name'>"+_data[i].name+"</p><p class='learnerCount'><span></span>"+_data[i].learnerCount+"</p>";
 				}
-			},
+			
+		
+		},
 			async : true
 		});
 	}
@@ -287,12 +290,10 @@ window.onload=function(){
 	// 	});
 	// }
 
-
-
 a_prd_jax();
 a_prg_jax();
 a_hot_jax();
-// aaa();
+// $('submit').onclick = function(){return function aaa(){}}
 
 
 
