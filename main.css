@@ -65,10 +65,14 @@
 .mooc{
 	margin: 0 22px 0 54px;
 }
+.open:hover,.yun:hover,.mooc:hover{
+	color: #39a030;
+	cursor: pointer;
+}
 
 .img{
 	width: 100%;
-	height: 460px;
+	height: auto;
 	overflow: hidden;
 	position: relative;
 }
@@ -188,6 +192,7 @@
 
 .content a:hover{
 	text-decoration: underline;
+	cursor: pointer;
 }
 
 .mid-img{
@@ -207,11 +212,6 @@
 .mid-img img{
 	width: 100%;
 }
-
-/*.mid-img img:last-child{
-	position: absolute;
-	right: -3px;
-}*/
 
 .wrap{
 	width: 100%;
@@ -266,7 +266,7 @@
 	width: 223px;
 	height: 226px;
 	display: inline-block;
-	margin: 0px 18px 19px 0px;  
+	margin: 1px 18px 19px 1px;  
 	background: #fff;
 	position: relative;
 	border: 1px solid #fff;
@@ -274,7 +274,7 @@
 }
 
 .project .prd > div:hover,.project .prg > div:hover{
-	box-shadow: 1px 1px 3px 0px #999,-1px -1px 3px 0px #999;
+	box-shadow: 1px 1px 3px 0px #000,-1px -1px 3px 0px #999;
 	border-radius: 1px;
 	cursor: pointer;
 }
@@ -302,6 +302,10 @@
 	overflow: hidden;       
 	color: #000;       
 	text-overflow: ellipsis; 
+}
+
+.wrap .project .name:hover{
+	color: #39a030;
 }
 
 .project .categoryName{
@@ -404,6 +408,11 @@
 	margin: 20px auto;
 }
 
+#rank:hover{
+	box-shadow: 1px 1px 3px 0px #999,-1px -1px 3px 0px #999;
+	cursor: pointer;
+}
+
 .rank .hot-classes .smallPhotoUrl{
 	display: inline-block;
 	width: 50px;
@@ -419,6 +428,7 @@
 	position: absolute;
 	top: 0px;
 	left: 62px;
+
 }
 
 .project .rank .hot-classes .learnerCount{
@@ -625,7 +635,7 @@
 		right: 170px;
 	}
 	#pages{
-		right: 450px;
+		right: 443px;
 	}
 	.micro div,.top div,.footer div{
 		width: 95%;
@@ -637,7 +647,10 @@
 		width: 33%;
 	}
 	.top div .open{
-		margin: 0 54px 0 280px;
+		margin: 0 54px 0 25%;
+	}
+	.footer div ul{
+		width: 160px;
 	}
 }
 

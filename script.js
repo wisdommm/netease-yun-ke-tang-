@@ -269,57 +269,32 @@ window.onload=function(){
 		});
 	}
 
-	// function aaa(){
-	// 	ajax({
-	// 	method : 'get',
-	// 	url : 'http://study.163.com /webDev/login.htm',
-	// 	data : {
-	// 		'userName': 'studyOnline',
-	// 		'password': 'study.163.com'
-	// 	},
-	// 	success : function(data) {
-	// 		if(data==1){
-	// 			$('watch').innerHTML = "已关注";
-	// 			$('watch').style.background = "gray";
-	// 			$('cover').style.display = 'none';
-	// 			$('login').style.display = 'none';
-	// 			console.log(11);
-	// 			}
-	// 		}},
-	// 	async : true
-	// 	});
-	// }
 
+	$('submit').onclick = function(){
+		var uesrName = md5($('user').value);
+		var passWord = md5($('psw').value);
+		ajax({
+		method : 'get',
+		url : 'http://study.163.com/webDev/login.htm',
+		data : {
+			'userName': uesrName,
+			'password': passWord
+		},
+		success : function(data) {
+			if(data==1){
+				$('cover').style.display = 'none';
+				$('login').style.display = 'none';
+				$('watch').innerHTML = "√ 已关注";
+				$('watch').onclick = function(){return 0;}
+				$('watch').style.background = "gray";
+			}
+		},
+		async: true
+		});
+	}
 a_prd_jax();
 a_prg_jax();
 a_hot_jax();
-// $('submit').onclick = function(){return function aaa(){}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -330,10 +305,3 @@ a_hot_jax();
 
 	
 }
-
-
-
-
-
-
-

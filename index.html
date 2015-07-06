@@ -5,8 +5,6 @@
 	<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
 	<link rel="stylesheet" type="text/css" href="reset.css">
 	<link rel="stylesheet" type="text/css" href="main.css">
-	<script type="text/javascript">
-	</script>
 </head>
 <body>
 	
@@ -24,7 +22,7 @@
 			<span class="watch" id="watch">+关注</span>
 			<span style="font-size: 12px;">粉丝 45</span>
 			<span class="open">网易公开课</span>
-			<span>云课堂</span>
+			<span class="yun">云课堂</span>
 			<span class="mooc">中国大学MOOC</span>
 			<img src="./img/search.jpg">
 		</div>
@@ -192,10 +190,13 @@
 	<div class="login" id="login">
 		<p>登录网易云课堂</p>
 		<div id="exit"></div>
-		<input placeholder="账号" type="text" />
-		<input placeholder="密码" type="password" />
-		<button type="submit" id="submit">登录</button>
+		<form>
+			<input placeholder="账号" type="text" id="user" />
+			<input placeholder="密码" type="password" id="psw" />
+			<button type="button" id="submit">登录</button>
+		<form>
 	</div>
 <script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" src="md5.min.js"></script>
 </body>
 </html>
