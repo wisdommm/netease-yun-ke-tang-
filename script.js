@@ -16,7 +16,7 @@ $('remind').onclick = function(){
 	$('micro').style.display = 'none';
 }
 
-window.onload=function(){ 
+ 
 	var index = 0;
 	var timer = null;
 	var spans = $('btn').getElementsByTagName('span');
@@ -220,7 +220,7 @@ window.onload=function(){
 			for(i=0;i<20;i++){
 				var ooDiv = document.createElement("div");
 				oDiv.appendChild(ooDiv);
-				ooDiv.innerHTML = "<div><span class='bigPhotoUrl' style='background:url("+_data.list[i].bigPhotoUrl+")center/100% 100%'></span><p class='name'>"+_data.list[i].name+"</p><p class='categoryName'>"+_data.list[i].categoryName+"</p><p class='learnerCount'><span></span>"+_data.list[i].learnerCount+"</p><p class='price'>￥"+_data.list[i].price+"</p></div>";
+				ooDiv.innerHTML = "<div><a href='#'><span class='bigPhotoUrl' style='background:url("+_data.list[i].bigPhotoUrl+")center/100% 100%'></span></a><p class='name'>"+_data.list[i].name+"</p><p class='categoryName'>"+_data.list[i].provider+"</p><p class='learnerCount'><span></span>"+_data.list[i].learnerCount+"</p><p class='price'>￥"+_data.list[i].price+"</p></div>";
 			}
 			$('pages').onclick = function(event){
 					event = event || window.event;
@@ -236,7 +236,7 @@ window.onload=function(){
 						for(i=_data.pagination.pageIndex*20;i<_data.pagination.pageIndex*20+20;i++){
 							var ooDiv = document.createElement("div");
 							oDiv.appendChild(ooDiv);
-							ooDiv.innerHTML = "<span class='bigPhotoUrl' style='background:url("+_data.list[i].bigPhotoUrl+")center/100% 100%'></span><p class='name'>"+_data.list[i].name+"</p><p class='categoryName'>"+_data.list[i].categoryName+"</p><p class='learnerCount'><span></span>"+_data.list[i].learnerCount+"</p><p class='price'>￥"+_data.list[i].price+"</p>";
+							ooDiv.innerHTML = "<a href= '#'><span class='bigPhotoUrl' style='background:url("+_data.list[i].bigPhotoUrl+")center/100% 100%'></span></a><p class='name'>"+_data.list[i].name+"</p><p class='categoryName'>"+_data.list[i].provider+"</p><p class='learnerCount'><span></span>"+_data.list[i].learnerCount+"</p><p class='price'>￥"+_data.list[i].price+"</p>";
 						}					
 					}
 			}
@@ -281,10 +281,11 @@ window.onload=function(){
 			'password': passWord
 		},
 		success : function(data) {
-			if(data==1){
+			var _data= JSON.parse(data);
+			if(_data==1){
 				$('cover').style.display = 'none';
 				$('login').style.display = 'none';
-				$('watch').innerHTML = "√ 已关注";
+				$('watch').innerHTML = "已关注";
 				$('watch').onclick = function(){return 0;}
 				$('watch').style.background = "gray";
 			}
@@ -292,16 +293,11 @@ window.onload=function(){
 		async: true
 		});
 	}
+
 a_prd_jax();
-a_prg_jax();
+
 a_hot_jax();
 
 
 
 
-
-
-
-
-	
-}
